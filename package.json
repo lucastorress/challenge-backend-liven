@@ -1,0 +1,51 @@
+{
+  "name": "challenge-backend-liven",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "engines": {
+    "node": ">= 16.13 <17"
+  },
+  "scripts": {
+    "start": "node build/src/main.js",
+    "dev": "ts-node-dev --respawn src/main.ts",
+    "clean": "rimraf coverage build tmp",
+    "prebuild": "npm run lint",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w -p tsconfig.json",
+    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts --ext .mts",
+    "test": "jest --coverage",
+    "prettier": "prettier --config .prettierrc --write .",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucastorress/challenge-backend-liven.git"
+  },
+  "keywords": [],
+  "author": "Lucas P. Torres de Araújo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucastorress/challenge-backend-liven/issues"
+  },
+  "homepage": "https://github.com/lucastorress/challenge-backend-liven#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.5.3",
+    "jest": "^28.1.1",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.5",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.7.4"
+  }
+}
