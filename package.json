@@ -2,13 +2,13 @@
   "name": "challenge-backend-liven",
   "version": "1.0.0",
   "description": "",
-  "main": "src/main.js",
+  "main": "src/app/main.ts",
   "engines": {
     "node": ">= 16.13 <17"
   },
   "scripts": {
-    "start": "node build/src/main.js",
-    "dev": "ts-node-dev --respawn src/main.ts",
+    "start": "ts-node src/app/server.ts",
+    "dev": "ts-node-dev --respawn src/app/server.ts",
     "clean": "rimraf coverage build tmp",
     "prebuild": "npm run lint",
     "build": "tsc -p tsconfig.json",
@@ -17,7 +17,8 @@
     "lint": "eslint . --ext .ts --ext .mts",
     "test": "jest --coverage",
     "prettier": "prettier --config .prettierrc --write .",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "repository": {
     "type": "git",
@@ -32,11 +33,15 @@
   "homepage": "https://github.com/lucastorress/challenge-backend-liven#readme",
   "dependencies": {
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.6",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
-    "@types/node": "^18.0.0",
+    "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "eslint": "^8.18.0",
@@ -45,7 +50,8 @@
     "jest": "^28.1.1",
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.5",
+    "ts-node": "10.7.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^4.7.4"
+    "typescript": "4.5.2"
   }
 }
