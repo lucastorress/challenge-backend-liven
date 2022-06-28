@@ -1,28 +1,35 @@
-import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
-import { Address } from '../../address/entity/Address';
-import { v4 as uuid } from 'uuid';
+import { Entity } from '../../shared/Entity';
+import validateEmail from './helpers/validateEmail';
 
-@Entity('users')
-export class User {
-  @PrimaryColumn('uuid')
+type UserProps = {
   id?: string;
-
-  @Column({ type: 'varchar', nullable: false })
   name: string;
-
-  @Column({ type: 'varchar', unique: true })
   email: string;
-
-  @Column({ type: 'varchar', nullable: false })
   password: string;
-
-  @Column({ type: 'date', nullable: false })
   birthday: Date;
+  address?: string[];
+};
 
-  @OneToMany(() => Address, (address) => address.user_id)
-  addresses?: Address[];
+class User extends Entity<UserProps> {
+  private constructor(props: UserProps, id?: string) {
+    super(props, id);
+  }
 
-  constructor() {
-    if (!this.id) this.id = uuid();
+  get email() {
+    return this.props.email;
+  }
+
+  static create(props: UserProps, id?: string) {
+    const isValidEmail = validateEmail(props.email);
+
+    if (!isValidEmail) {
+      throw new Error('E-mail inválido.');
+    }
+
+    const user = new User(props, id);
+
+    return user;
   }
 }
+
+export { User, UserProps };
