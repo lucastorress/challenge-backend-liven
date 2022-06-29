@@ -1,13 +1,6 @@
 import { app } from '../../../../main';
 import request from 'supertest';
-import { ICreateUserDTO } from '../CreateUserDTO';
-
-const mockUser: ICreateUserDTO = {
-  name: 'Lucas Torres',
-  email: 'lucastorres@make2u.com.br',
-  password: 'liven123',
-  birthday: new Date(),
-};
+import { mockUser } from '../../../../shared/TestMock';
 
 describe('Unit test: Create User [Controller]', () => {
   it('should be able to create a new user', async () => {

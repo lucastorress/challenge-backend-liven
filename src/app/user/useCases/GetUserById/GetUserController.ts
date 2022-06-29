@@ -16,7 +16,7 @@ export default class GetUserController {
         return response.status(400).json('Usuário não encontrado.');
       }
 
-      return response.status(200).json(user);
+      return response.status(200).json(user.valueOf());
     } catch (error) {
       response.status(400).json(error.message || 'Internal Server Error');
     }

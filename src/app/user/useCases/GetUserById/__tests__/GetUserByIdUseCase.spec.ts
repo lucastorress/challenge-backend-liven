@@ -1,15 +1,8 @@
-import { ICreateUserDTO } from '../../CreateUser/CreateUserDTO';
 import InMemoryUsersRepositoryInstance from '../../../repositories/in-memory/InMemoryUsersRepository';
 import IUserRepository from '../../../repositories/IUsersRepository';
 import { GetUserUseCase } from '../GetUserUseCase';
 import { CreateUserUseCase } from '../../CreateUser/CreateUserUseCase';
-
-const mockUser: ICreateUserDTO = {
-  name: 'Lucas Torres',
-  email: 'lucastorres@make2u.com.bsr',
-  password: 'liven123',
-  birthday: new Date(),
-};
+import { mockUser } from '../../../../shared/TestMock';
 
 describe('Unit test: Get User [Use Case]', () => {
   let usersRepository: IUserRepository;
