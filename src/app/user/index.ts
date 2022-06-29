@@ -1,10 +1,11 @@
-import { Router } from 'express';
-import UserController from './controller/userController';
+import { getUserController } from './useCases/GetUserById';
+import { createUserController } from './useCases/CreateUser';
+import { updateUserController } from './useCases/UpdateUser';
+import { deleteUserController } from './useCases/DeleteUser';
 
-const controller = new UserController();
-
-export default function UserRouter(routes: Router): void {
-  routes.post('/user', controller.store.bind(controller));
-
-  console.log('[router] UserRouter is already to use...');
-}
+export {
+  getUserController,
+  createUserController,
+  updateUserController,
+  deleteUserController,
+};
