@@ -7,8 +7,16 @@ import {
   deleteUserController,
 } from './user';
 
+import { authenticateUserController } from './auth';
+
 const router = Router();
 
+// Auth
+router.post('/auth/login', (request, response) => {
+  return authenticateUserController.handle(request, response);
+});
+
+// Users
 router.get('/users/:id', (request, response) => {
   return getUserController.handle(request, response);
 });
