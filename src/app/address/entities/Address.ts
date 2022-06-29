@@ -1,5 +1,5 @@
 import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
-import { User } from '../../user/entity/User';
+import { User } from '../../user/entities/User';
 import { v4 as uuid } from 'uuid';
 
 @Entity('addresses')
