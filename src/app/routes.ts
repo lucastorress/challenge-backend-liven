@@ -1,27 +1,25 @@
-import { Router as RouterExpress } from 'express';
+import { Router } from 'express';
 
-class Router {
-  private static _instance: Router;
-  private routes: RouterExpress;
+import {
+  getUserController,
+  createUserController,
+  updateUserController,
+  deleteUserController,
+} from './user';
 
-  constructor(readonly Router: RouterExpress) {
-    this.routes = Router;
-  }
+const router = Router();
 
-  public static getInstance(): Router {
-    if (!this._instance) {
-      this._instance = new Router(RouterExpress());
-    }
-    return this._instance;
-  }
+router.get('/users/:id', (request, response) => {
+  return getUserController.handle(request, response);
+});
+router.post('/users', (request, response) => {
+  return createUserController.handle(request, response);
+});
+router.put('/users/:id', (request, response) => {
+  return updateUserController.handle(request, response);
+});
+router.delete('/users/:id', (request, response) => {
+  return deleteUserController.handle(request, response);
+});
 
-  public getRoutes(): RouterExpress {
-    return this.routes;
-  }
-
-  public createRoutes(): void {
-    Router.getInstance().getRoutes();
-  }
-}
-
-export default Router;
+export { router };
