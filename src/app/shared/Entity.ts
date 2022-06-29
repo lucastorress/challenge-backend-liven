@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 export abstract class Entity<T> {
   protected _id: string;
-  public props: T;
+  protected props: T;
 
   constructor(props: T, id?: string) {
     this.props = props;
