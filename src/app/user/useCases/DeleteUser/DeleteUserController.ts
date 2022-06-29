@@ -5,16 +5,16 @@ export default class DeleteUserController {
   constructor(private useCase: DeleteUserUseCase) {}
 
   public async handle(request: Request, response: Response) {
-    let id;
-
-    if (request.query && request.query.id) {
-      id = request.query.id;
-    }
+    const { id } = request.params;
 
     try {
       const userWasDeleted = await this.useCase.execute({
         id,
       });
+
+      if (!userWasDeleted) {
+        return response.status(400).json('Usuário não encontrado.');
+      }
 
       return response.status(200).json(userWasDeleted);
     } catch (error) {
