@@ -1,5 +1,4 @@
 import { Entity } from '../../shared/Entity';
-import validateEmail from './helpers/validateEmail';
 
 type UserProps = {
   id?: string;
@@ -7,7 +6,6 @@ type UserProps = {
   email: string;
   password: string;
   birthday: Date;
-  address?: string[];
 };
 
 class User extends Entity<UserProps> {
@@ -15,20 +13,33 @@ class User extends Entity<UserProps> {
     super(props, id);
   }
 
+  static create(props: UserProps, id?: string) {
+    const user = new User(props, id);
+
+    return user;
+  }
+
+  get name() {
+    return this.props.name;
+  }
+
   get email() {
     return this.props.email;
   }
 
-  static create(props: UserProps, id?: string) {
-    const isValidEmail = validateEmail(props.email);
+  get password() {
+    return this.props.password;
+  }
 
-    if (!isValidEmail) {
-      throw new Error('E-mail inválido.');
-    }
+  get birthday() {
+    return this.props.birthday;
+  }
 
-    const user = new User(props, id);
-
-    return user;
+  valueOf() {
+    return {
+      ...(this.id && { id: this.id }),
+      ...this.props,
+    };
   }
 }
 
