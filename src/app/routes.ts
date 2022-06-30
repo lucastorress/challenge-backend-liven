@@ -23,7 +23,7 @@ router.post('/auth/login', (request, response) => {
 });
 
 // Users
-router.get('/user/:id', (request, response) => {
+router.get('/user/:id', authMiddleware, (request, response) => {
   return getUserController.handle(request, response);
 });
 router.post('/user', (request, response) => {
