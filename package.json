@@ -7,13 +7,12 @@
     "node": ">= 16.13 <17"
   },
   "scripts": {
-    "start": "ts-node --transpile-only --respawn --ignore-watch node_modules src/app/server.ts",
-    "dev": "ts-node-dev --respawn src/app/server.ts",
+    "start": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules src/app/server.ts",
     "clean": "rimraf coverage build tmp",
     "prebuild": "npm run lint",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
-    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "build:release": "npm run clean && tsc -p tsconfig.build.json",
     "lint": "eslint . --ext .ts --ext .mts",
     "test": "jest",
     "prettier": "prettier --config .prettierrc --write .",
