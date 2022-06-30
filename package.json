@@ -2,7 +2,7 @@
   "name": "challenge-backend-liven",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app/main.ts",
+  "main": "src/app/server.ts",
   "engines": {
     "node": ">= 16.13 <17"
   },
@@ -47,6 +47,7 @@
     "@types/jest": "^28.1.3",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^16.11.10",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "eslint": "^8.18.0",

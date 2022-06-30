@@ -1,34 +1,61 @@
-import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
-import { User } from '../../user/entities/User';
-import { v4 as uuid } from 'uuid';
+import { Entity } from '../../shared/Entity';
 
-@Entity('addresses')
-export class Address {
-  @PrimaryColumn('uuid')
-  id: string;
-
-  @Column({ type: 'varchar', nullable: false })
+type AddressProps = {
+  id?: string;
+  userId: string;
   zipCode: string;
-
-  @Column({ type: 'varchar', nullable: false })
   address: string;
-
-  @Column({ type: 'varchar', nullable: false })
   complement: string;
-
-  @Column({ type: 'varchar', nullable: false })
   state: string;
-
-  @Column({ type: 'varchar', nullable: false })
   city: string;
-
-  @Column({ type: 'varchar', length: 3, nullable: false })
   country: string;
+};
 
-  @ManyToOne(() => User, (user) => user.addresses)
-  user_id: User;
+class Address extends Entity<AddressProps> {
+  private constructor(props: AddressProps, id?: string) {
+    super(props, id);
+  }
 
-  constructor() {
-    if (!this.id) this.id = uuid();
+  static create(props: AddressProps, id?: string) {
+    const user = new Address(props, id);
+
+    return user;
+  }
+
+  get userId() {
+    return this.props.userId;
+  }
+
+  get zipCode() {
+    return this.props.zipCode;
+  }
+
+  get address() {
+    return this.props.address;
+  }
+
+  get complement() {
+    return this.props.complement;
+  }
+
+  get state() {
+    return this.props.state;
+  }
+
+  get city() {
+    return this.props.city;
+  }
+
+  get country() {
+    return this.props.country;
+  }
+
+  valueOf() {
+    return {
+      ...(this.id && { id: this.id }),
+      ...this.props,
+    };
   }
 }
+
+export { Address, AddressProps };
