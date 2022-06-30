@@ -7,7 +7,7 @@ import request from 'supertest';
 describe('Unit test: Authenticate User [Controller]', () => {
   beforeAll(async () => {
     const body = mockUser;
-    await request(app).post('/user').send(body);
+    await request(app).post('/v1/user').send(body);
   });
 
   it('should be able to authenticate user registered, receive user without password property and jwt token', async () => {
@@ -16,7 +16,7 @@ describe('Unit test: Authenticate User [Controller]', () => {
       password: mockUser.password,
     };
 
-    const response = await request(app).post(`/auth/login`).send(body);
+    const response = await request(app).post(`/v1/auth/login`).send(body);
     const responseParsed = JSON.parse(response.text);
 
     expect(responseParsed).toHaveProperty('user');
@@ -30,7 +30,7 @@ describe('Unit test: Authenticate User [Controller]', () => {
       password: 'wrongpassword',
     };
 
-    const response = await request(app).post(`/auth/login`).send(body);
+    const response = await request(app).post(`/v1/auth/login`).send(body);
     const responseParsed = JSON.parse(response.text);
 
     expect(response.status).toBe(401);
@@ -43,7 +43,7 @@ describe('Unit test: Authenticate User [Controller]', () => {
       password: 'wrongpassword',
     };
 
-    const response = await request(app).post(`/auth/login`).send(body);
+    const response = await request(app).post(`/v1/auth/login`).send(body);
     const responseParsed = JSON.parse(response.text);
 
     expect(response.status).toBe(401);
