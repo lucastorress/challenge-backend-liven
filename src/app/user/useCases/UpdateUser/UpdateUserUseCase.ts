@@ -14,8 +14,8 @@ export class UpdateUserUseCase {
 
     const searchUserByEmail = await this.repository.findByEmail(props.email);
 
-    if (searchUserByEmail) {
-      throw new Error('Usuário já cadastrado.');
+    if (!searchUserByEmail) {
+      throw new Error('Usuário não encontrado.');
     }
 
     return await this.repository.save(props);
