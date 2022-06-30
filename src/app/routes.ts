@@ -29,7 +29,7 @@ router.get('/user/:id', authMiddleware, (request, response) => {
 router.post('/user', (request, response) => {
   return createUserController.handle(request, response);
 });
-router.put('/user/:id', (request, response) => {
+router.put('/user/:id', authMiddleware, (request, response) => {
   return updateUserController.handle(request, response);
 });
 router.delete('/user/:id', authMiddleware, (request, response) => {

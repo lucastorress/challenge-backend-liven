@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { UpdateUserUseCase } from './UpdateUserUseCase';
 
-export default class CreateUserController {
+export default class UpdateUserController {
   constructor(private useCase: UpdateUserUseCase) {}
 
   public async handle(request: Request, response: Response) {
