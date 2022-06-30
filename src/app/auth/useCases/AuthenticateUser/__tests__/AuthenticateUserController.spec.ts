@@ -7,7 +7,7 @@ import request from 'supertest';
 describe('Unit test: Authenticate User [Controller]', () => {
   beforeAll(async () => {
     const body = mockUser;
-    await request(app).post('/users').send(body);
+    await request(app).post('/user').send(body);
   });
 
   it('should be able to authenticate user registered, receive user without password property and jwt token', async () => {
