@@ -32,7 +32,7 @@ router.post('/user', (request, response) => {
 router.put('/user/:id', (request, response) => {
   return updateUserController.handle(request, response);
 });
-router.delete('/user/:id', (request, response) => {
+router.delete('/user/:id', authMiddleware, (request, response) => {
   return deleteUserController.handle(request, response);
 });
 
