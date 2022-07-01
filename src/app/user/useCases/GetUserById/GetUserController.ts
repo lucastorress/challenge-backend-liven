@@ -1,22 +1,18 @@
 import { Request, Response } from 'express';
-import { GetUserUseCase } from './GetUserUseCase';
+import { GetUserWithAddressesUseCase } from './GetUserWithAddressesUseCase';
 
 export default class GetUserController {
-  constructor(private useCase: GetUserUseCase) {}
+  constructor(private useCase: GetUserWithAddressesUseCase) {}
 
   public async handle(request: Request, response: Response) {
-    const { id } = request.params;
+    const userId = request.userId;
 
     try {
       const user = await this.useCase.execute({
-        id,
+        id: userId,
       });
 
-      if (!user) {
-        return response.status(400).json('Usuário não encontrado.');
-      }
-
-      return response.status(200).json(user.valueOf());
+      return response.status(200).json(user);
     } catch (error) {
       response.status(400).json(error.message || 'Internal Server Error');
     }
