@@ -18,53 +18,18 @@
         "tags": ["Autenticação"]
       }
     },
-    "/user/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {},
-        "tags": ["Usuário"],
-        "security": [{ "bearerAuth": [] }]
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {},
-        "tags": ["Usuário"],
-        "security": [{ "bearerAuth": [] }]
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {},
-        "tags": ["Usuário"],
-        "security": [{ "bearerAuth": [] }]
-      }
-    },
     "/user": {
+      "get": {
+        "summary": "Retorna o próprio usuário já autenticado",
+        "description": "Visualiza o próprio usuário do sistema. É necessário estar logado.",
+        "parameters": [],
+        "responses": {},
+        "tags": ["Usuário"],
+        "security": [{ "bearerAuth": [] }]
+      },
       "post": {
-        "description": "",
+        "summary": "Cria um novo usuário",
+        "description": "Cria um novo usuário.",
         "parameters": [],
         "responses": {},
         "tags": ["Usuário"],
@@ -83,18 +48,45 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "Atualiza o próprio usuário já autenticado",
+        "description": "Atualiza o próprio usuário do sistema. É necessário estar logado.",
+        "parameters": [],
+        "responses": {},
+        "tags": ["Usuário"],
+        "security": [{ "bearerAuth": [] }]
+      },
+      "delete": {
+        "summary": "Remove o próprio usuário já autenticado",
+        "description": "Remove o próprio usuário do sistema. É necessário estar logado.",
+        "parameters": [],
+        "responses": {},
+        "tags": ["Usuário"],
+        "security": [{ "bearerAuth": [] }]
       }
     },
     "/user/address": {
       "get": {
-        "description": "",
-        "parameters": [],
+        "summary": "Visualiza endereços de um usuário já cadastrado",
+        "description": "Visualiza os endereços do próprio usuário do sistema. É necessário estar logado.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "schema": {
+              "type": "string"
+            },
+            "allowEmptyValue": true
+          }
+        ],
         "responses": {},
         "tags": ["Endereços do usuário"],
         "security": [{ "bearerAuth": [] }]
       },
       "post": {
-        "description": "",
+        "summary": "Cria um novo endereço para um usuário já cadastrado",
+        "description": "Cria um endereço para o próprio usuário do sistema. É necessário estar logado.",
         "parameters": [],
         "responses": {},
         "tags": ["Endereços do usuário"],
@@ -103,7 +95,8 @@
     },
     "/user/address/{id}": {
       "get": {
-        "description": "",
+        "summary": "Visualiza um endereço específico de um usuário já cadastrado",
+        "description": "Visualiza um endereços específico do próprio usuário do sistema. É necessário estar logado.",
         "parameters": [
           {
             "name": "id",
@@ -117,7 +110,8 @@
         "security": [{ "bearerAuth": [] }]
       },
       "put": {
-        "description": "",
+        "summary": "Atualiza um novo endereço para um usuário já cadastrado",
+        "description": "Atualiza um endereço para o próprio usuário do sistema. É necessário estar logado.",
         "parameters": [
           {
             "name": "id",
@@ -131,7 +125,8 @@
         "security": [{ "bearerAuth": [] }]
       },
       "delete": {
-        "description": "",
+        "summary": "Remove um novo endereço para um usuário já cadastrado",
+        "description": "Remove um endereço para o próprio usuário do sistema. É necessário estar logado.",
         "parameters": [
           {
             "name": "id",
