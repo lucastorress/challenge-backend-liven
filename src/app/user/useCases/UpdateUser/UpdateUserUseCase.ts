@@ -1,23 +1,18 @@
 import IUsersRepository from '../../repositories/IUsersRepository';
 import { IUpdateUserDTO } from './UpdateUserDTO';
-import validateEmail from '../../entities/helpers/validateEmail';
 
 export class UpdateUserUseCase {
   constructor(private repository: IUsersRepository) {}
 
   public async execute(props: IUpdateUserDTO) {
-    const isValidEmail = validateEmail(props.email);
+    const searchUserById = await this.repository.findById(props.userId);
 
-    if (!isValidEmail) {
-      throw new Error('E-mail inválido.');
-    }
-
-    const searchUserByEmail = await this.repository.findByEmail(props.email);
-
-    if (!searchUserByEmail) {
+    if (!searchUserById) {
       throw new Error('Usuário não encontrado.');
     }
 
-    return await this.repository.save(props);
+    const user = await this.repository.save(props.body);
+
+    return user.valueOf();
   }
 }
