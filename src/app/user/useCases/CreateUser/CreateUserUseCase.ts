@@ -18,6 +18,7 @@ export class CreateUserUseCase {
       throw new Error('Usuário já cadastrado.');
     }
 
-    return await this.repository.save(props);
+    const user = await this.repository.save(props);
+    return user.valueOf();
   }
 }

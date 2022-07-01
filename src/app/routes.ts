@@ -23,16 +23,16 @@ router.post('/auth/login', (request, response) => {
 });
 
 // Users
-router.get('/user/:id', authMiddleware, (request, response) => {
+router.get('/user', authMiddleware, (request, response) => {
   return getUserController.handle(request, response);
 });
 router.post('/user', (request, response) => {
   return createUserController.handle(request, response);
 });
-router.put('/user/:id', authMiddleware, (request, response) => {
+router.put('/user', authMiddleware, (request, response) => {
   return updateUserController.handle(request, response);
 });
-router.delete('/user/:id', authMiddleware, (request, response) => {
+router.delete('/user', authMiddleware, (request, response) => {
   return deleteUserController.handle(request, response);
 });
 

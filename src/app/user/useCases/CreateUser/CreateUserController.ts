@@ -15,7 +15,7 @@ export default class CreateUserController {
         birthday,
       });
 
-      return response.status(201).json(user.valueOf());
+      return response.status(201).json(user);
     } catch (error) {
       response.status(400).json(error.message || 'Internal Server Error');
     }

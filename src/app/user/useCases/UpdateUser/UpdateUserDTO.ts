@@ -1,3 +1,6 @@
 import { UserProps } from '../../entities/User';
 
-export type IUpdateUserDTO = UserProps;
+export interface IUpdateUserDTO {
+  userId: string;
+  body: Omit<UserProps, 'id'>;
+}
