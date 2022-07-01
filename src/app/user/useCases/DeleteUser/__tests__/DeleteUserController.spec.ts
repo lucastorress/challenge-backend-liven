@@ -18,9 +18,9 @@ describe('Unit test: Delete User [Controller]', () => {
     token = JSON.parse(auth.text).token;
   });
 
-  it('should be able to delete an user that already exists', async () => {
+  it('should be able to delete your own user that already exists', async () => {
     const response = await request(app)
-      .delete(`/v1/user/${id}`)
+      .delete(`/v1/user`)
       .set('Authorization', `Bearer ${token}`);
     const body = JSON.parse(response.text);
 
@@ -28,9 +28,9 @@ describe('Unit test: Delete User [Controller]', () => {
     expect(body).toBe(true);
   });
 
-  it('should not be able to delete an user that dont exists', async () => {
+  it('should not be able to delete your own user that dont exists anymore', async () => {
     const response = await request(app)
-      .delete(`/v1/user/${id}`)
+      .delete(`/v1/user`)
       .set('Authorization', `Bearer ${token}`);
     const body = JSON.parse(response.text);
 

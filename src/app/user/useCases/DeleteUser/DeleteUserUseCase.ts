@@ -5,7 +5,7 @@ export class DeleteUserUseCase {
   constructor(private repository: IUsersRepository) {}
 
   public async execute(props: IDeleteUserDTO) {
-    const user = await this.repository.remove(props.id);
-    return user;
+    const userWasDeleted = await this.repository.remove(props.id);
+    return userWasDeleted;
   }
 }

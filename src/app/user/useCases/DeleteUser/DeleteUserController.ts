@@ -5,11 +5,11 @@ export default class DeleteUserController {
   constructor(private useCase: DeleteUserUseCase) {}
 
   public async handle(request: Request, response: Response) {
-    const { id } = request.params;
+    const userId = request.userId;
 
     try {
       const userWasDeleted = await this.useCase.execute({
-        id,
+        id: userId,
       });
 
       if (!userWasDeleted) {

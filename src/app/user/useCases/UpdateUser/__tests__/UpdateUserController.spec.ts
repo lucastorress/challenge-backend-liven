@@ -18,17 +18,17 @@ describe('Unit test: Update User [Controller]', () => {
     token = JSON.parse(auth.text).token;
   });
 
-  it('should be able to update an user that already exists', async () => {
+  it('should be able to update your own user', async () => {
     const updateMockUser = {
       ...mockUser,
       password: '123liven',
     };
     const response = await request(app)
-      .put(`/v1/user/${id}`)
+      .put(`/v1/user`)
       .send(updateMockUser)
       .set('Authorization', `Bearer ${token}`);
+
     const body = JSON.parse(response.text);
-    console.log(body);
 
     expect(response.status).toBe(201);
     expect(body).toHaveProperty('id');

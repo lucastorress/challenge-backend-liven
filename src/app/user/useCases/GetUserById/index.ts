@@ -1,10 +1,16 @@
 import InMemoryUsersRepositoryInstance from '../../repositories/in-memory/InMemoryUsersRepository';
-import { GetUserUseCase } from './GetUserUseCase';
+import InMemoryAddressesRepositoryInstance from '../../../address/repositories/in-memory/InMemoryAddressRepository';
+import { GetUserWithAddressesUseCase } from './GetUserWithAddressesUseCase';
 import GetUserController from './GetUserController';
 
 const memoryUserRepository = InMemoryUsersRepositoryInstance;
-const getUserUseCase = new GetUserUseCase(memoryUserRepository);
+const memoryAddressRepository = InMemoryAddressesRepositoryInstance;
 
-const getUserController = new GetUserController(getUserUseCase);
+const getUserWithAddressesUseCase = new GetUserWithAddressesUseCase(
+  memoryUserRepository,
+  memoryAddressRepository,
+);
 
-export { getUserUseCase, getUserController };
+const getUserController = new GetUserController(getUserWithAddressesUseCase);
+
+export { getUserWithAddressesUseCase, getUserController };
